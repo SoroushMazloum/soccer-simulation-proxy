@@ -110,7 +110,11 @@ void GrpcAgentPlayer::getActions() const
     state.set_agent_type(protos::AgentType::PlayerT);
     protos::PlayerActions actions;
     ClientContext context;
+    auto start_time = high_resolution_clock::now();
     Status status = stub_->GetPlayerActions(&context, state, &actions);
+    auto end_time = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end_time - start_time);
+    std::cout<<"get:"<<duration.count()<<"ms"<<std::endl;
 
     if (!status.ok())
     {
