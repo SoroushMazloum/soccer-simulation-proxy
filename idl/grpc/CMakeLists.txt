@@ -9,13 +9,13 @@ set(PROTO_FILE "service.proto")
 set(PROTO_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
 
 # Locate the protoc executable
-find_program(PROTOBUF_PROTOC_EXECUTABLE protoc)
+find_program(PROTOBUF_PROTOC_EXECUTABLE protoc ${GRPC_BIN_PATH})
 if(NOT PROTOBUF_PROTOC_EXECUTABLE)
     message(FATAL_ERROR "Protoc not found. Please make sure it is installed and in the system PATH.")
 endif()
 
 # Locate the gRPC C++ plugin executable
-find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin $ENV{HOME}/.local/bin)
+find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin  ${GRPC_BIN_PATH})
 if (NOT GRPC_CPP_PLUGIN)
     message(FATAL_ERROR "grpc_cpp_plugin not found. Please make sure it is installed and in the system PATH.")
 endif()
